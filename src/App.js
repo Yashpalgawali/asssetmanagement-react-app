@@ -13,43 +13,44 @@ function App() {
       <FourthComponent/> */}
 
       <ToDoApp></ToDoApp>
+      {/* <AssetManagement /> */}
     </div>
   );
 }
 
-function FirstComponent() {
-  return (
-    <div className="FirstComponent">First Component</div>
-  )
-}
+// function FirstComponent() {
+//   return (
+//     <div className="FirstComponent">First Component</div>
+//   )
+// }
 
-function SecondComponent() {
-  return (
-    <>
-      <div className='SecondComponent'> <strong> Second Component</strong></div>
-      <div className='SecondComponent'> <strong> Second Component</strong></div>
-    </>
-  )
-}
-
-
-class ThirdComponent extends Component {
-   render() {
-    return (
-      <div className='ThirdComponent'> <strong> Third Component</strong></div>
-    )
-  }
-}
+// function SecondComponent() {
+//   return (
+//     <>
+//       <div className='SecondComponent'> <strong> Second Component</strong></div>
+//       <div className='SecondComponent'> <strong> Second Component</strong></div>
+//     </>
+//   )
+// }
 
 
-class FourthComponent extends Component{
-  render(){
-    return(
-      <div className='FourthComponent'> Fourth Component</div>
-    )
-  }
+// class ThirdComponent extends Component {
+//    render() {
+//     return (
+//       <div className='ThirdComponent'> <strong> Third Component</strong></div>
+//     )
+//   }
+// }
 
-}
+
+// class FourthComponent extends Component{
+//   render(){
+//     return(
+//       <div className='FourthComponent'> Fourth Component</div>
+//     )
+//   }
+
+// }
 
 
 export default App;

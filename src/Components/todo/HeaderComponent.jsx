@@ -5,11 +5,12 @@ import { useContext } from 'react'
   
 function HeaderComponent() {
 
-    //const authContext = useContext(AuthContext)
-    //console.log(`Header = ${authContext.number}` )
+    // const authContext = useContext(AuthContext)
+    // console.log(`Header = ${authContext.number}` )
     // Using hook
 
     const authContext = useAuth()
+    const username = authContext.username
     console.log(authContext)
 
     const isAuthenticated = authContext.isAuthenticated

@@ -15,7 +15,18 @@ const apiClient = axios.create({
 //export const retrieveHelloWorldAPiBean = () => axios.get('http://localhost:8080/hello-world-bean')
 
 //3. call to rest api with pathvariables
-export const retrieveHelloWorldAPiBeanPathVariable = (username) => axios.get(`http://localhost:8080/hello-world/path-variable/${username}`)
+export const retrieveHelloWorldAPiBeanPathVariable = 
+        (username) => axios.get(`http://localhost:8080/hello-world/path-variable/${username}`,  {
+            headers : {
+                Authorization : `Basic dXNlcm5hbWU6cGFzc3dvcmQ=`
+            }
+        } )
+
+export const executeBasicAuthentication = (token) => apiClient.get(`basicauth`,  {
+                                                                                headers : {
+                                                                                    Authorization : token
+                                                                                }
+                                                                        } )
 
 //4. After implementing the common url 
 export const retrieveHelloWorldAPiBean = () => apiClient.get('hello-world-bean')

@@ -48,6 +48,9 @@ function ListToDoComponent() {
          navigate(`/todo/${id}`)
     }
 
+    function createTodo() {
+        navigate(`/todo/-1`)
+    }
 
     return(
         <div className="ListToDoComponent">
@@ -84,6 +87,7 @@ function ListToDoComponent() {
                                         
                                         </td>
                                         <td><button className="btn btn-success" onClick={()=>updateTodo(todo.id)} >UPDATE</button></td>
+                                        
                                     </tr>
                                 )
                             )
@@ -91,6 +95,9 @@ function ListToDoComponent() {
                         
                     </tbody>
                 </table>
+                <div>
+                    <button className="btn btn-primary m-5" onClick={()=>createTodo()} >CREATE</button>
+                </div>
             </div>
         </div>
     )

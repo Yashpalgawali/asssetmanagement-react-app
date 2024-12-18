@@ -1,6 +1,7 @@
 import { createContext, useContext } from "react";
 import { useState } from "react";
-import { executeBasicAuthentication } from "../api/HelloWorldApiService";
+import { executeBasicAuthentication, executeJwtAuthentication } from "../api/AuthenticationApiService";
+import { apiClient } from "../api/ApiClient";
 
 //1. Create a Context
 export const AuthContext = createContext()
@@ -27,28 +28,38 @@ export default function AuthProvider( { children } ) {
         </AuthContext.Provider>
     )
 
-
-    async function login(username , password) {
-        const basicAuthToken = 'Basic '+ btoa(username +':'+password)
-        try{
-            const response = await executeBasicAuthentication(basicAuthToken)
+//Basic Authentication
+    // async function login(username , password) {
+    //     const basicAuthToken = 'Basic '+ btoa(username +':'+password)
+    //     try{
+    //         const response = await executeBasicAuthentication(basicAuthToken)
                                         
-            if(response.status==200) {
-                setAuthenticated(true)
-                setUsername(username)
-                setToken(basicAuthToken)
-                return true
-            }
-            else {
-                logout()
-                return false
-            }
-        }
-        catch(error){
-           logout()
-            return false
-        }
-    }
+    //         if(response.status===200) {
+    //             setAuthenticated(true)
+    //             setUsername(username)
+    //             setToken(basicAuthToken)
+
+    //             // This will intercept each request and send the token along with each request
+    //             apiClient.interceptors.request.use(
+    //                 (config) => {
+    //                     console.log('intercepting')
+    //                     config.headers.Authorization = basicAuthToken
+    //                     return config
+    //                 }
+    //             )
+
+    //             return true
+    //         }
+    //         else {
+    //             logout()
+    //             return false
+    //         }
+    //     }
+    //     catch(error){
+    //        logout()
+    //         return false
+    //     }
+    // }
 
     // function login(username , password) {
     //     if(username==='admin' && password==='admin') {
@@ -62,6 +73,42 @@ export default function AuthProvider( { children } ) {
     //         return false
     //     }
     // }
+
+
+    // JWT authentication
+
+    async function login(username , password) {
+        
+        try{
+            const response = await executeJwtAuthentication(username,password)
+                                        
+            if(response.status===200) {
+                const jwtToken = 'Bearer '+response.data.token
+                setAuthenticated(true)
+                setUsername(username)
+                setToken(jwtToken)
+
+                // This will intercept each request and send the token along with each request
+                apiClient.interceptors.request.use(
+                    (config) => {
+                        console.log('intercepting')
+                        config.headers.Authorization = jwtToken
+                        return config
+                    }
+                )
+
+                return true
+            }
+            else {
+                logout()
+                return false
+            }
+        }
+        catch(error){
+           logout()
+            return false
+        }
+    }
 
     function logout() {
         setAuthenticated(false) 

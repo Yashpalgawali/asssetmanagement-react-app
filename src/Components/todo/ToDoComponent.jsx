@@ -75,7 +75,7 @@ export default function TodoComponent(){
             errors.description = 'Enter at least 5 characters for description'
         }
 
-        if(values.targetDate===null || values.targetDate==='' || moment(values.targetDate).isValid()) {
+        if(values.targetDate===null || values.targetDate===''  ) {
             errors.targetDate= 'Enter a valid date'
         }
         console.log(values)

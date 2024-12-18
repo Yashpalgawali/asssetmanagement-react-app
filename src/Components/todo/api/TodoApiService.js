@@ -1,9 +1,5 @@
-import axios from 'axios';
+ import { apiClient } from './ApiClient';
 
-
-const apiClient = axios.create({
-    baseURL : 'http://localhost:8080/'
-})
 
 
 //1.  way to call res api
